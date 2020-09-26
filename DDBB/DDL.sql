@@ -1,6 +1,9 @@
+DROP DATABASE IF EXISTS `bdPersonas`;
+
 CREATE DATABASE `bdPersonas`;
 
 USE bdPersonas;
+
 CREATE TABLE `Personas`(
     `Dni` varchar(20) NOT NULL,
     `Nombre` varchar(45) NOT NULL,
