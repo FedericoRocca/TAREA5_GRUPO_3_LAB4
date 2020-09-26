@@ -94,6 +94,9 @@ public class AgregarPersona extends JPanel
                 if( ddbbGateway.crearPersona(persona) > 0 )
                 {
                     JOptionPane.showMessageDialog(null, "Persona dada de alta correctamente", "Persona dada de alta!", JOptionPane.OK_OPTION);
+                    txfNombre.setText("");
+                    txfApellido.setText("");
+                    txfDNI.setText("");
                 }
                 else
                 {
