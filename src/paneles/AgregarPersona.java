@@ -5,6 +5,10 @@ import javax.swing.JTextPane;
 import java.awt.FlowLayout;
 import javax.swing.JTree;
 import javax.swing.border.TitledBorder;
+
+import dominio.Persona;
+import dominio.PersonaDao;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -57,11 +61,11 @@ public class AgregarPersona extends JPanel
                 // Validamos largos
                 if( txfNombre.getText().length() > 45 )
                 {
-                    JOptionPane.showMessageDialog(null, "El nombre ingresado es demasiado largo", "Nombre inválido", JOptionPane.OK_OPTION);
+                    JOptionPane.showMessageDialog(null, "El nombre ingresado es demasiado largo", "Nombre inválido!", JOptionPane.OK_OPTION);
                 }
                 else if( txfApellido.getText().length() > 45 )
                 {
-                    JOptionPane.showMessageDialog(null, "El apellido ingresado es demasiado largo", "Apellido inválido", JOptionPane.OK_OPTION);
+                    JOptionPane.showMessageDialog(null, "El apellido ingresado es demasiado largo", "Apellido inválido!", JOptionPane.OK_OPTION);
                 }
                 
                 int dniIngresado = 0;
@@ -77,10 +81,24 @@ public class AgregarPersona extends JPanel
                 
                 if( dniIngresado <= 0 )
                 {
-                    JOptionPane.showMessageDialog(null, "El DNI ingresado es inválido", "Apellido inválido", JOptionPane.OK_OPTION);
+                    JOptionPane.showMessageDialog(null, "El DNI ingresado es inválido", "Apellido inválido!", JOptionPane.OK_OPTION);
                 }
                 
                 // Llegamos hasta acá, las validaciones resultaron todas OK, guardamos en la base
+                Persona persona = new Persona();
+                persona.setNombre(txfNombre.getText());
+                persona.setApellido(txfApellido.getText());
+                persona.setDni(dniIngresado);
+                
+                PersonaDao ddbbGateway = new PersonaDao();
+                if( ddbbGateway.crearPersona(persona) > 0 )
+                {
+                    JOptionPane.showMessageDialog(null, "Persona dada de alta correctamente", "Persona dada de alta!", JOptionPane.OK_OPTION);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Hubo un error al dar de alta la persona", "Contacte al administrador", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         btnAceptar.setBounds(10, 86, 89, 23);
