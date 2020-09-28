@@ -9,6 +9,7 @@ import java.awt.Font;
 
 public class VentanaPrincipal extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JMenuBar menuBar;
 	private JMenu menuPersonas;
 	private JMenuItem menuEliminar;

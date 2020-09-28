@@ -16,7 +16,7 @@ public class PersonaDaolmpl implements PersonaDao
 {
 	private static final String insert = "INSERT INTO personas(dni, nombre, apellido) VALUES(?, ?, ?)";
 	private static final String readall = "SELECT * FROM personas";
-	private static final String update = "UPDATE personas SET dni=?,nombre=?,apellido=? WHERE dni=?";
+	private static final String update = "UPDATE personas SET dni=?,nombre=?,apellido=? WHERE dni=?"; 
 		
 	public boolean insert(Persona persona)
 	{

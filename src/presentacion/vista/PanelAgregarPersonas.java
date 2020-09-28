@@ -7,9 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PanelAgregarPersonas extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
 	private JTextField textField_Apellido;
 	private JTextField textField_DNI;
 	private JTextField textField_Nombre;
@@ -32,6 +35,18 @@ public class PanelAgregarPersonas extends JPanel {
 		textField_Apellido.setColumns(10);
 		
 		textField_DNI = new JTextField();
+		textField_DNI.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				char validar = arg0.getKeyChar();
+				if(Character.isLetter(validar)) {
+					getToolkit().beep();
+					arg0.consume();
+					
+					JOptionPane.showMessageDialog(null, "Ingresar sólo números");
+				}
+			}
+		});
 		textField_DNI.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_DNI.setBounds(240, 241, 157, 22);
 		add(textField_DNI);
@@ -100,5 +115,15 @@ public class PanelAgregarPersonas extends JPanel {
 	public void mostrarMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje);
 	}
+	
+//	private void textField_DNIKeyTyped(java.awt.event.KeyEvent evt) {
+//		char validar = evt.getKeyChar();
+//		if(Character.isLetter(validar)) {
+//			getToolkit().beep();
+//			evt.consume();
+//			
+//			JOptionPane.showMessageDialog(null, "Ingresar sólo números");
+//		}
+//	}
 
 }

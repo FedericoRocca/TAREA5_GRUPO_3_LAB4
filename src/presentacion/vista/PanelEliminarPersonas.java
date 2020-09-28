@@ -15,6 +15,7 @@ import java.util.List;
 
 public class PanelEliminarPersonas extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private JButton btnEliminar;
 	private JList<Persona> list;
 	private DefaultListModel<Persona> listModel;
