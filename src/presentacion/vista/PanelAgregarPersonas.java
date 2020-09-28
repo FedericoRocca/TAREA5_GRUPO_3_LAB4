@@ -29,6 +29,17 @@ public class PanelAgregarPersonas extends JPanel {
 		setLayout(null);
 		
 		textField_Apellido = new JTextField();
+		textField_Apellido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char validar = e.getKeyChar();
+				if(Character.isDigit(validar)) {
+					getToolkit().beep();
+					e.consume();
+					JOptionPane.showMessageDialog(null, "Ingresar letras");
+				}
+			}
+		});
 		textField_Apellido.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_Apellido.setBounds(240, 158, 157, 22);
 		add(textField_Apellido);
@@ -72,6 +83,17 @@ public class PanelAgregarPersonas extends JPanel {
 		add(lblDNI);
 		
 		textField_Nombre = new JTextField();
+		textField_Nombre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				char validar = arg0.getKeyChar();
+				if(Character.isDigit(validar)) {
+					getToolkit().beep();
+					arg0.consume();
+					JOptionPane.showMessageDialog(null, "Ingresar letras");
+				}
+			}
+		});
 		textField_Nombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_Nombre.setColumns(10);
 		textField_Nombre.setBounds(240, 82, 157, 22);
