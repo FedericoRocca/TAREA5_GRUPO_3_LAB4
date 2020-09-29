@@ -48,6 +48,8 @@ public class Controlador implements ActionListener {
 				.addActionListener(a -> EventoClickButton_ModificarPesona_PanelModificarPersonas(a));
 		this.pnlModificarPersonas.getList()
 				.addListSelectionListener(a -> EventoClickList_SeleccionarPesona_PanelModificarPersonas(a));
+		this.pnlEliminarPersonas.getBtnEliminar()
+				.addActionListener(a -> EventoClickButton_EliminarPesona_PanelEliminarPersonas(a));
 
 
 	}
@@ -142,16 +144,37 @@ public class Controlador implements ActionListener {
 
 	// EventoClickList seleccionar persona en PanelModificarPersonas
 	private void EventoClickList_SeleccionarPesona_PanelModificarPersonas(ListSelectionEvent a) {
-		int filasSeleccionadas = this.pnlModificarPersonas.getList().getSelectedIndex();
-		if (filasSeleccionadas >= 0) {
-			Persona personaSeleccionada = this.personasEnTabla.get(filasSeleccionadas);
+		int filaSeleccionada = this.pnlModificarPersonas.getList().getSelectedIndex();
+		if (filaSeleccionada >= 0) {
+			Persona personaSeleccionada = this.personasEnTabla.get(filaSeleccionada);
 			this.pnlModificarPersonas.getTxtNombre().setText(personaSeleccionada.getNombre());
 			this.pnlModificarPersonas.getTxtApellido().setText(personaSeleccionada.getApellido());
 			this.pnlModificarPersonas.getTxtDni().setText(personaSeleccionada.getDni());
 		}
 	}
 
-
+	// EventoClickButton eliminar persona en PanelEliminarPersonas
+	private void EventoClickButton_EliminarPesona_PanelEliminarPersonas(ActionEvent a) {
+		int filaSeleccionada = this.pnlEliminarPersonas.getList().getSelectedIndex();
+		if (filaSeleccionada >= 0) {
+			Persona personaSeleccionada = this.personasEnTabla.get(filaSeleccionada);
+			String dni = personaSeleccionada.getDni();
+			
+			boolean estado = pNeg.delete(dni);
+			String mensaje;
+			if (estado)
+				mensaje = "Persona eliminada con exito!";
+			else 
+				mensaje = "Ha ocurrido un error! La persona no fue eliminada.";
+			
+			this.pnlEliminarPersonas.mostrarMensaje(mensaje);
+			this.llenarDatos();
+		}
+		else {
+			this.pnlEliminarPersonas.mostrarMensaje("Debe seleccionar una persona!");
+		}
+	}
+	
 
 	private void refrescarTabla() {
 		this.personasEnTabla = pNeg.readAll();

@@ -12,5 +12,5 @@ public interface PersonaNegocio {
 	public boolean insert(Persona persona);
 	public boolean update(Persona persona);
 	public List<Persona> readAll();
-	
+	public boolean delete(String dni);
 }

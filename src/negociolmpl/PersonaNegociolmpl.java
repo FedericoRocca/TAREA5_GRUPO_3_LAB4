@@ -21,8 +21,6 @@ public class PersonaNegociolmpl implements PersonaNegocio {
 		return estado;
 	}
 	
-
-
 	@Override
 	public List<Persona> readAll() {
 		return pdao.readAll();
@@ -31,5 +29,10 @@ public class PersonaNegociolmpl implements PersonaNegocio {
 	@Override
 	public boolean update(Persona persona) {
 		return pdao.update(persona);
+	}
+	
+	@Override
+	public boolean delete(String dni) {
+		return pdao.delete(dni);
 	}
 }
